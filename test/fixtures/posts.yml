@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  content: MyString
+  user: ahmed
+  created_at: "2016-09-13 14:07:00"
+  updated_at: "2016-09-13 14:07:00"
+  attachment: "dioda_nowy_dystans.jpg"
+
+two:
+  title: MyString
+  content: MyString
+  user: ahmed
+  created_at: "2016-09-13 14:07:00"
+  updated_at: "2016-09-13 14:07:00"
+  attachment: "dioda_nowy_dystans.jpg"

@@ -8,6 +8,8 @@ gem 'bcrypt',         '3.1.11'
 gem 'faker',          '1.6.3'
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
+gem 'carrierwave', '~> 0.11.2'
+gem 'mini_magick', '~> 4.3'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'

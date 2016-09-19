@@ -1,0 +1,21 @@
+<% provide(:title, @post.user.name) %>
+<div class="post-container">
+    <div class="post_info">
+      <h1 class="text-left"><%= @post.title %></h1>
+      <img class="user_avatar"><%= gravatar_for @post.user, size: 30 %></img>
+      <p><%= @post.user.name %> @ <%= @post.created_at%></p>
+    </div>
+    
+    <div class="content">
+      <p><%= @post.content %></p>
+      <%= (image_tag @post.attachment_url, :class => "post_image") %>
+    </div>
+    <% if ((@post.user == current_user) && (@post.created_at > 5.minutes.ago)) || current_user.admin? %>
+       <div class="post-options">
+         <ul class="nav navbar-nav navbar-right">
+           <li><%= link_to "Edit", root_path %></li>
+           <li><%= link_to "Delete", help_path %></li>
+         </ul>
+       </div>
+    <% end %>  
+</div>
