@@ -10,12 +10,14 @@
       <p><%= @post.content %></p>
       <%= (image_tag @post.attachment_url, :class => "post_image") %>
     </div>
-    <% if ((@post.user == current_user) && (@post.created_at > 5.minutes.ago)) || current_user.admin? %>
-       <div class="post-options">
-         <ul class="nav navbar-nav navbar-right">
-           <li><%= link_to "Edit", root_path %></li>
-           <li><%= link_to "Delete", help_path %></li>
-         </ul>
-       </div>
-    <% end %>  
+    <% if current_user %>
+          <% if ((@post.user == current_user) && (@post.created_at > 5.minutes.ago)) || current_user.admin? %>
+           <div class="post-options">
+             <ul class="nav navbar-nav navbar-right">
+               <li><%= link_to "Edytuj", root_path %></li>
+               <li><%= link_to "Usuń", help_path %></li>
+             </ul>
+           </div>
+           <% end %>  
+       <% end %>
 </div>
