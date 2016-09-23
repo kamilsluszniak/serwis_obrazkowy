@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :posts
   resources :users
+  resources :account_activations, only: [:edit]
+
   get 'sessions/new'
 
   root 'posts#index'
