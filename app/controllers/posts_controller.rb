@@ -42,6 +42,27 @@ class PostsController < ApplicationController
       render 'new'
     end
   end
+  
+  def rate
+    @id = params[:id]
+    @post = Post.find(@id)
+    if params[:rate] && current_user
+      @current_user_id = current_user.id
+      
+      if !(@post.users_voted.include? "i#{@current_user_id}")
+        @post.users_voted += "i#{current_user.id.to_s}"
+        @post.rating += 1
+        @post.save
+      else
+        @message = "Można głosować tylko raz na każdy post!"
+        respond_to do |format|
+          format.js { render :file => "/posts/rate_modal_prompt.js.erb" }
+        end
+        return
+      end
+    end
+    render js: "$('.span-rating').html('Głosy: #{@post.rating} ')"
+  end
 
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
