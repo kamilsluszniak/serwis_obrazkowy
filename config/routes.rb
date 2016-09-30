@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   
   get   '/new_post',  to: 'posts#new'
+  patch '/rate_post',  to: 'posts#rate'
   
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -1,16 +1,21 @@
 require 'test_helper'
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
-  setup do
+
+  def setup
+    @user = users(:ahmed)
+    @other_user = users(:archer)
     @post = posts(:one)
   end
+
 
   test "should get index" do
     
   end
 
   test "should get new" do
-    
+    get new_post_path
+    assert_response :success
   end
 
   test "should create post" do

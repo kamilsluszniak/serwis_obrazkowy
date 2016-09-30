@@ -237,17 +237,21 @@ input {
   
 .post-container{
   width: 700px;
-  margin: 20px auto;
+  margin: auto auto;
   border: 1px;
+  padding: auto;
   border-style: groove;
   border-color: LightGrey;
   position:  relative;
+  display: block;
+  
   
   .content{
     padding-left: 7px;
     display:  block;
     margin-left: auto;
     margin-right: auto;
+    
     .post_image{
       max-width: 600px;
       display: block;
@@ -255,9 +259,29 @@ input {
       margin-right: auto;
       margin-bottom: 10px;
     }
+    
+    .rating{
+      float: left;
+
+      
+      span{
+        border: 1px solid grey;
+        display: inline-block;
+        color: black;
+        background-color: LightGrey;
+        padding: 10px;
+      }
+      .button_to{
+        //width: 40px;
+        float: right;
+        display: inline-block;
+        padding: 10px;
+      }
+    }
   }
 }
-
+  
+  
 /*posts index*/
 .posts {
   list-style: none;
@@ -267,4 +291,11 @@ input {
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
   }
+}
+
+#modal-window {
+  #modal-fade  {
+  display: inline-block;
+  }
+  
 }
