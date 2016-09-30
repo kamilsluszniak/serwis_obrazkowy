@@ -49,7 +49,7 @@ class PostsController < ApplicationController
     if (@post.user == current_user) && ((@post.created_at > 5.minutes.ago) || current_user.admin?)
       @post.update_attributes(post_params)
       flash[:success] = "Post edytowany pomyślnie"
-      redirect_to post
+      redirect_to @post
     else
       flash[:danger] = "Nie można edytować postów po upływie 5 minut od ich utworzenia"
       redirect_to root
