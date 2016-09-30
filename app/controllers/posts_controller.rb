@@ -26,28 +26,6 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
-    
-  end
-  
-  def rate
-    @id = params[:id]
-    @post = Post.find(@id)
-    if params[:rate] && current_user
-      @current_user_id = current_user.id
-      
-      if !(@post.users_voted.include? "i#{@current_user_id}")
-        @post.users_voted += "i#{current_user.id.to_s}"
-        @post.rating += 1
-        @post.save
-      else
-        @message = "Można głosować tylko raz na każdy post!"
-        respond_to do |format|
-          format.js { render :file => "/posts/rate_modal_prompt.js.erb" }
-        end
-        return
-      end
-    end
-    render js: "$('.span-rating').html('Głosy: #{@post.rating} ')"
   end
 
   # POST /posts
@@ -68,14 +46,13 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    
     if (@post.user == current_user) && ((@post.created_at > 5.minutes.ago) || current_user.admin?)
-      @post.update_attributes(user_params)
+      @post.update_attributes(post_params)
       flash[:success] = "Post edytowany pomyślnie"
       redirect_to post
     else
       flash[:danger] = "Nie można edytować postów po upływie 5 minut od ich utworzenia"
-      redirect_to root_url
+      redirect_to root
     end
   end
 
@@ -85,10 +62,10 @@ class PostsController < ApplicationController
     if (@post.user == current_user) && ((@post.created_at > 5.minutes.ago) || current_user.admin?)
       @post.destroy
       flash[:success] = "Post usunięty pomyślnie"
-      redirect_to root_url
+      redirect_to root
     else
       flash[:danger] = "Nie można usunąć postów po upływie 5 minut od ich utworzenia"
-      redirect_to root_url
+      redirect_to root
     end
   end
 
@@ -100,6 +77,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content, :user_id, :attachment, :random, :vote, :id)
+      params.require(:post).permit(:title, :content, :user_id, :attachment, :random)
     end
 end
