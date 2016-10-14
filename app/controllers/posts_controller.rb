@@ -35,7 +35,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = @current_user.id
     
-    if @post.user_id = @current_user.id && @post.save 
+    if (@post.user_id == @current_user.id) && @post.save 
       flash[:success] = "Post dodany. Możesz go edytować przed upływem 5 minut "
       redirect_to @post
     else
@@ -73,7 +73,7 @@ class PostsController < ApplicationController
       redirect_to @post
     else
       flash[:danger] = "Nie można edytować postów po upływie 5 minut od ich utworzenia"
-      redirect_to root
+      redirect_to root_url
     end
   end
 
@@ -83,10 +83,10 @@ class PostsController < ApplicationController
     if (@post.user == current_user) && ((@post.created_at > 5.minutes.ago) || current_user.admin?)
       @post.destroy
       flash[:success] = "Post usunięty pomyślnie"
-      redirect_to root
+      redirect_to root_url
     else
       flash[:danger] = "Nie można usunąć postów po upływie 5 minut od ich utworzenia"
-      redirect_to root
+      redirect_to root_url
     end
   end
 
