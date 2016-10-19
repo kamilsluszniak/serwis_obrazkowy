@@ -7,7 +7,7 @@ class PostsController < ApplicationController
     if params[:random]
       @posts =  Post.order('random()').page(params[:page]).per_page(10)
     else
-      @posts = Post.paginate(page: params[:page], :per_page => 10)
+      @posts = Post.paginate(page: params[:page], :per_page => 10).order('created_at DESC')
     end
     
     #= Post.paginate(page: params[:page], :per_page => 10, :order => 'RANDOM()')
