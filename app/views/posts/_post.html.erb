@@ -22,13 +22,14 @@
            </div>
            <% end %>  
        <% end %>
-      <div class="rating">
-          <% if current_user %>
-              <%= button_to "+1",  rate_post_path(:id=> post.id, :rate=> 1), method: :patch, remote: true %>
-          <% end %>
-      
-          <span class="text-right span-rating">Głosy: <%= post.rating %> </span>
-      </div>
+       
+       <div class="rating btn-group inline pull-left" data-toggle="buttons-checkbox">
+           <% if current_user %>
+               <%= button_to "+1", rate_post_path(:id=> post.id, :rate=> 1), class: 'btn btn-success rate-btn', method: :patch, remote: true %>
+           <% end %>
+          
+           <span class="text-right span-rating">Głosy: <%= post.rating %> </span>
+       </div>
       
       
     </div>

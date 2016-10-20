@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   
-  get   '/new_post',  to: 'posts#new'
+
   patch '/rate_post',  to: 'posts#rate'
   
 

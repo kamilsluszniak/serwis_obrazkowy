@@ -16,7 +16,7 @@
              <ul class="nav navbar-nav navbar-right">
                <li><%= link_to "Edytuj", edit_post_path(@post.id) %></li>
                <li><%= link_to "Usuń", @post, method: :delete,
-                                  data: { confirm: "You sure?" } %></li>
+                                  data: { confirm: "Na pewno usunąć ten post?" } %></li>
              </ul>
            </div>
            <% end %>  

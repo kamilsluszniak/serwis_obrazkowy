@@ -253,7 +253,7 @@ input {
     margin-right: auto;
     
     .post_image{
-      max-width: 600px;
+      width: 600px;
       display: block;
       margin-left: auto;
       margin-right: auto;
@@ -261,7 +261,7 @@ input {
     }
     
     .rating{
-      float: left;
+      
 
       
       span{
@@ -269,14 +269,9 @@ input {
         display: inline-block;
         color: black;
         background-color: LightGrey;
-        padding: 10px;
+        padding: 12px;
       }
-      .button_to{
-        //width: 40px;
-        float: right;
-        display: inline-block;
-        padding: 10px;
-      }
+      
     }
   }
 }

@@ -35,4 +35,15 @@ CarrierWave.configure do |config|
   config.fog_directory    = ENV['AWS_BUCKET']
   #config.s3_access_policy = :public_read                          # Generate http:// urls. Defaults to :authenticated_read (https://)
   #config.fog_host         = "#{ENV['S3_ASSET_URL']}/#{ENV['S3_BUCKET_NAME']}"
+  module CarrierWave
+    module MiniMagick
+      def quality(percentage)
+        manipulate! do |img|
+          img.quality(percentage)
+          img = yield(img) if block_given?
+          img
+        end
+      end
+    end
+  end
 end
