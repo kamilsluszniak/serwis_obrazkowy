@@ -35,14 +35,22 @@ class UsersController < ApplicationController
   end
   
   def edit
-    
+    @edit = true
   end
   
   def update
-    if @user.update_attributes(user_params)
-      flash[:success] = "Profil zaktualizowany"
-      redirect_to @user
+    if @user.authenticated?(:password, params[:user][:password])
+      params[:user].delete(:password)
+      if @user.update_attributes(user_params)
+        flash[:success] = "Profil zaktualizowany"
+        redirect_to @user
+      else
+        @edit = true
+        render 'edit'
+      end
     else
+      @edit = true
+      flash[:danger] = "Nieprawidłowe hasło"
       render 'edit'
     end
   end
@@ -51,7 +59,7 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password,
-                                   :password_confirmation)
+                                   :password_confirmation, :avatar)
     end
     
     def logged_in_user

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :comments,          only: [:create, :destroy]
+
 
   get 'sessions/new'
 
@@ -23,7 +25,8 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   
 
-  patch '/rate_post',  to: 'posts#rate'
+  post '/rate_post',  to: 'posts#rate'
+  
   
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

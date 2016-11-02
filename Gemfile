@@ -13,6 +13,7 @@ gem 'mini_magick', '~> 4.3'
 gem 'haml'
 gem 'fog'
 gem "figaro"
+gem 'responders'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'

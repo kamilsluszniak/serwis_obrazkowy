@@ -306,6 +306,8 @@ GEM
       builder
       nokogiri (>= 1.4.1)
       trollop
+    responders (2.3.0)
+      railties (>= 4.2.0, < 5.1)
     ruby-progressbar (1.8.1)
     sass (3.4.22)
     sass-rails (5.0.6)
@@ -375,6 +377,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.0)
   rails-controller-testing (= 0.1.1)
+  responders
   sass-rails (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)

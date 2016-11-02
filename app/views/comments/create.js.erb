@@ -1,0 +1,4 @@
+$('.comments').hide();
+$('.comments').html('<%= raw escape_javascript(render(:partial => 'comments/comment', :collection => @comments )) %>')
+$('#comment-field').val('');
+$('.comments').fadeIn(400);

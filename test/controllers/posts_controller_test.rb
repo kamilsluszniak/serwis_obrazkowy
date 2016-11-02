@@ -46,6 +46,11 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
       @user1.destroy
     end
   end
+  
+  #test "should vote post" do
+  #  log_in_as @user
+  #  assert post rate_post_path, params: {:id => @post.id, :rate => 1}
+  #end
 
   test "should show post" do
     

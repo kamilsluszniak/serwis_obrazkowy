@@ -1,15 +1,17 @@
 <li>
+<div class="row margin-15px-fixed">
+<div class="col-md-8 col-md-offset-2">
 <div class="post-container">
     <div class="post_info">
       <h1 class="text-left"><%= post.title %></h1>
-      <img class="user_avatar"><%= gravatar_for post.user, size: 30 %></img>
-      <p><%= post.user.name %> @ <%= post.created_at %></p>
+      <img class="user_avatar"><%= avatar_for post.user %></img>
+      <p><%= post.user.name %>, added <%= time_ago_in_words(post.created_at) %> ago.</p>
       
     </div>
     
     <div class="content">
       <p><%= post.content %></p>
-      <%= (image_tag post.attachment_url, :class => "post_image") %>
+      <%= (link_to image_tag(post.attachment_url), post, :class => "post_image") %>
       
       <% if current_user %>
           <% if ((post.user == current_user) && (post.created_at > 5.minutes.ago)) || current_user.admin? %>
@@ -17,15 +19,15 @@
              <ul class="nav navbar-nav navbar-right">
                <li><%= link_to "Edytuj", edit_post_path(post.id) %></li>
                <li><%= link_to "Usuń", post, method: :delete,
-                                  data: { confirm: "You sure?" } %></li>
+                                  data: { confirm: "Na pewno usunąć ten post?" } %></li>
              </ul>
            </div>
            <% end %>  
        <% end %>
        
-       <div class="rating btn-group inline pull-left" data-toggle="buttons-checkbox">
+       <div class="rating btn-group inline pull-left">
            <% if current_user %>
-               <%= button_to "+1", rate_post_path(:id=> post.id, :rate=> 1), class: 'btn btn-success rate-btn', method: :patch, remote: true %>
+               <%= button_to "+1", rate_post_path(:id=> post.id, :rate=> 1), class: 'btn btn-success rate-btn', method: :post, remote: true %>
            <% end %>
           
            <span class="text-right span-rating">Głosy: <%= post.rating %> </span>
@@ -34,5 +36,7 @@
       
     </div>
     
+</div>
+</div>
 </div>
 </li>

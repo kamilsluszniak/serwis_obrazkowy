@@ -1,17 +1,22 @@
 <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages' %>
 
-      <%= f.label :name %>
+      <%= f.label :name, 'Nazwa' %>
       <%= f.text_field :name, class: 'form-control' %>
 
       <%= f.label :email %>
       <%= f.email_field :email, class: 'form-control' %>
 
-      <%= f.label :password %>
+      <%= f.label :password, 'Hasło' %>
       <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <% unless @edit %>
+            <%= f.label :password_confirmation, "Potwierdzenie hasła" %>
+            <%= f.password_field :password_confirmation, class: 'form-control' %>
+      <% end %>
+      
+      <%= f.label :avatar %>
+      <%= f.file_field :avatar %>
 
       <%= f.submit yield(:button_text), class: "btn btn-primary" %>
     <% end %>

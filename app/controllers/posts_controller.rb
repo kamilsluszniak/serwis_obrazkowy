@@ -16,6 +16,8 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @comment = Comment.new
+    @comments = Comment.where("post_id = ?", params[:id]).paginate(page: params[:page], :per_page => 5)
     
   end
 
@@ -57,6 +59,7 @@ class PostsController < ApplicationController
         @post.users_voted += "i#{current_user.id.to_s}"
         @post.rating += 1
         @post.save
+
       else
         @message = "Można głosować tylko raz na każdy post!"
         respond_to do |format|
@@ -104,4 +107,6 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :content, :user_id, :attachment, :random)
     end
+    
+    
 end
