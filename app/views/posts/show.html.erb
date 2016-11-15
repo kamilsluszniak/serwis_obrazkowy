@@ -1,31 +1,11 @@
-<% provide(:title, @post.user.name) %>
-<div class="row">
-<div class="col-md-8 col-md-offset-2">
-<div class="post-container">
-    <div class="post_info">
-      <h1 class="text-left"><%= @post.title %></h1>
-      <img class="user_avatar"><%= gravatar_for @post.user, size: 30 %></img>
-      <p><%= @post.user.name %> @ <%= @post.created_at%></p>
-    </div>
-    
-    <div class="content">
-      <p><%= @post.content %></p>
-      <%= (image_tag @post.attachment_url, :class => "post_image") %>
-    </div>
-    <% if current_user %>
-          <% if ((@post.user == current_user) && (@post.created_at > 5.minutes.ago)) || current_user.admin? %>
-           <div class="post-options">
-             <ul class="nav navbar-nav navbar-right">
-               <li><%= link_to "Edytuj", edit_post_path(@post.id) %></li>
-               <li><%= link_to "Usuń", @post, method: :delete,
-                                  data: { confirm: "Na pewno usunąć ten post?" } %></li>
-             </ul>
-           </div>
-           <% end %>  
-       <% end %>
-</div>
-</div>
-</div>
+<% provide(:title, @post.title) %>
+
+
+
+<ul class="posts">
+  <%= render @post %>
+</ul>
+
 <div class="grid">
     <div class="row">
         <% if logged_in? %>
@@ -49,7 +29,9 @@
                     <ul class="comments">
                         <%= render @comments %>
                     </ul>
-                    <%= will_paginate @comments%>
+                    <div class="pagination">
+                        <%= will_paginate @comments%>
+                    </div>
                 <% end %>
             </div>
         </div>

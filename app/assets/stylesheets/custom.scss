@@ -270,9 +270,11 @@ input {
     display:  block;
     margin-left: auto;
     margin-right: auto;
+    width: 610px;
     
     .post_image{
-      width: 600px;
+      width: 100%;
+      padding: 10px;
       display: block;
       margin-left: auto;
       margin-right: auto;

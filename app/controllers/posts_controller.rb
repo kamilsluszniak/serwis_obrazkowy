@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = Comment.where("post_id = ?", params[:id]).paginate(page: params[:page], :per_page => 5)
-    
+
   end
 
   # GET /posts/new
@@ -105,7 +105,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content, :user_id, :attachment, :random)
+      params.require(:post).permit(:title, :content, :user_id, :attachment, :random, :rate, :id)
     end
     
     

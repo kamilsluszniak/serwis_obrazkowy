@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
     before_action :logged_in_user, only: [:create, :destroy]
+    before_action :set_comment, only: [:show, :edit, :update, :destroy]
     respond_to :html, :js
     
   def new
@@ -11,7 +12,6 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     if @comment.save
       @comments = Comment.where("post_id = ?", params[:post_id]).paginate(page: params[:page], :per_page => 5)
-      #flash[:success] = "Komentarz dodany!"
       respond_to do |format|
         format.js
       end
@@ -21,12 +21,48 @@ class CommentsController < ApplicationController
   end
   
   def destroy
+    if current_user.admin?
+      
+      #render :template => 'your_file_here'
+      respond_to do |format|
+        format.js
+        
+      end
+      @comment.destroy
+    end
+  end
+  
+  def edit
+    if current_user.admin?
+      @content = @comment.content
+      #render :template => 'your_file_here'
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
+  
+  def update
+    if current_user.admin?
+      @comment.update_attributes(update_comment_params)
+       respond_to do |format|
+        format.js
+      end
+    end
   end
 
   private
+  
+    def set_comment
+      @comment = Comment.find(params[:id])
+    end
 
     def comment_params
-      params.require(:comment).permit(:content, :post_id).deep_merge(user_id: current_user.id)
+      params.require(:comment).permit(:id, :content, :post_id).deep_merge(user_id: current_user.id)
+    end
+    
+    def update_comment_params
+      params.require(:comment).permit(:id, :content)
     end
     
     def logged_in_user

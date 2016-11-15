@@ -1,0 +1,32 @@
+<li id="comment<%=comment.id%>">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="comment-container">
+        <% @user = User.find(comment.user_id) %>
+        <img class="user_avatar-comment"><%= avatar_for @user %></img>
+        <h4 class="user"><%= @user.name%> </h4>
+        
+        
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+        <div class="comment-form">
+              <%= form_for(comment, :remote => true, :id => "comment-form") do |f| %>
+                  <div class="field">
+                    <%= f.text_area :content, :id => "comment-field" %>
+                  </div>
+                  <%= f.submit "Edytuj komentarz", class: "btn btn-primary", :id => "submit-comment-btn" %>
+              <% end %>
+            </div>
+        </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 col-md-offset-3">
+      <span class="timestamp">
+            Added <%= time_ago_in_words(comment.created_at) %> ago.
+      </span>
+    </div>
+  </div>
+</li>

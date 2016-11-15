@@ -14,6 +14,7 @@ gem 'haml'
 gem 'fog'
 gem "figaro"
 gem 'responders'
+gem 'rails-i18n', '~> 5.0.0'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
