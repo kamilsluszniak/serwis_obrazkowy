@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  respond_to :html, :js
 
   # GET /posts
   # GET /posts.json
@@ -8,6 +9,14 @@ class PostsController < ApplicationController
       @posts =  Post.order('random()').page(params[:page]).per_page(10)
     else
       @posts = Post.paginate(page: params[:page], :per_page => 10).order('created_at DESC')
+      @yt = @posts.where("yt_uid is NOT NULL and yt_uid != ''")
+      @ar = Array.new
+      
+      @yt.collect do |yt|
+        @ar << yt.id
+        @ar << yt.yt_uid
+      end
+      
     end
     
     #= Post.paginate(page: params[:page], :per_page => 10, :order => 'RANDOM()')
@@ -18,12 +27,13 @@ class PostsController < ApplicationController
   def show
     @comment = Comment.new
     @comments = Comment.where("post_id = ?", params[:id]).paginate(page: params[:page], :per_page => 5)
-
+    
   end
 
   # GET /posts/new
   def new
     unless logged_in?
+      flash[:danger] = "Musisz najpierw się zalogować."
       redirect_to login_path
     else
       @post = Post.new
@@ -40,13 +50,22 @@ class PostsController < ApplicationController
     @current_user = current_user
     @post = Post.new(post_params)
     @post.user_id = @current_user.id
-    
-    if (@post.user_id == @current_user.id) && @post.save 
-      flash[:success] = "Post dodany. Możesz go edytować przed upływem 5 minut "
-      redirect_to @post
-    else
+    if (@post.attachment.present? ^ @post.video_link.present?)
+      if (@post.user_id == @current_user.id) && @post.save 
+        flash[:success] = "Post dodany. Możesz go edytować przed upływem 5 minut "
+        redirect_to @post
+      else
+        flash[:danger] = "Musisz najpierw się zalogować."
+        redirect_to root_url
+      end
+    elsif (@post.attachment.present? && @post.video_link.present?)
+      flash[:danger] = "Nie można jednocześnie dodać obrazka i filmu"
+      render 'new'
+    elsif !(@post.attachment.present? && @post.video_link.present?)
+      flash[:danger] = "Musisz dodać obrazek lub film"
       render 'new'
     end
+    
   end
   
   def rate
@@ -105,7 +124,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content, :user_id, :attachment, :random, :rate, :id)
+      params.require(:post).permit(:title, :content, :user_id, :attachment, :random, :rate, :id, :video_link)
     end
     
     

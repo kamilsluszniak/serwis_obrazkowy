@@ -6,8 +6,13 @@
   <%= f.label :content, 'Treść posta:' %>
   <%= f.text_field :content, class: 'form-control' %>
   
+  <h3>Możesz dodać obrazek lub link do filmu na youtube.</h3>
+  
   <%= f.label :attachment, 'Obrazek:' %>
   <%= f.file_field :attachment %>
+  
+  <%= f.label :video_link, 'Link do filmu:' %>
+  <%= f.text_field :video_link %>
 
   <%= f.submit "Dodaj post", class: "btn btn-primary" %>
 <% end %>

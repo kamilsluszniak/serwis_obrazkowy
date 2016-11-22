@@ -8,4 +8,8 @@
 
 <%= will_paginate @posts %>
 
+<script type="text/javascript">
+    <%= render 'show_js.html.erb' %>
+</script>
+
 <%= debug(params) if Rails.env.development? %>

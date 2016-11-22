@@ -9,10 +9,14 @@
       
     </div>
     
-    <div class="content">
+    <div class="content" id="post<%= post.id %>">
       <p><%= post.content %></p>
-      <%= (link_to image_tag(post.attachment_url), post, :class => "post_image") %>
-      
+            <% if post.attachment_url.present? %>
+                <%= (link_to image_tag(post.attachment_url), post, :class => "post_image") %>
+            <% elsif post.video_link.present? %>
+                <div id="player<%=post.id%>"></div>
+            <% end %>
+            
       <% if current_user %>
           <% if ((post.user == current_user) && (post.created_at > 5.minutes.ago)) || current_user.admin? %>
            <div class="post-options">
@@ -35,6 +39,7 @@
       
       
     </div>
+    
     
 </div>
 </div>

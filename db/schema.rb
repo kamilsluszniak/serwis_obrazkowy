@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161025092127) do
+ActiveRecord::Schema.define(version: 20161116153246) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20161025092127) do
     t.string   "attachment"
     t.integer  "rating",      default: 0
     t.text     "users_voted", default: " "
+    t.string   "video_link"
+    t.string   "yt_uid"
   end
 
   create_table "users", force: :cascade do |t|

@@ -19,3 +19,6 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+#ignore AWS S3 keys
+/config/application.yml
