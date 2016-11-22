@@ -2,7 +2,7 @@ class Post < ApplicationRecord
     YT_LINK_FORMAT = /\A(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{11})/
     
     before_create -> do
-        if yt_uid
+        if video_link
             yt_uid = video_link.match(YT_LINK_FORMAT)
             self.yt_uid = yt_uid[1] if yt_uid && yt_uid[1]
             if self.yt_uid.to_s.length != 11
