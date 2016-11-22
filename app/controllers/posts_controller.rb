@@ -53,7 +53,7 @@ class PostsController < ApplicationController
     if (@post.attachment.present? ^ @post.video_link.present?)
       if (@post.user_id == @current_user.id) && @post.save 
         flash[:success] = "Post dodany. Możesz go edytować przed upływem 5 minut "
-        redirect_to @post
+        redirect_to root_url
       else
         flash[:danger] = "Musisz najpierw się zalogować."
         redirect_to root_url
