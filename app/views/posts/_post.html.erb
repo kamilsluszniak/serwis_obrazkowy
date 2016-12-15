@@ -30,15 +30,13 @@
                     <% end %>  
                 <% end %>
             <div class="rating btn-group inline pull-right">
-                <div class="row">
-                    <% if current_user %>
-                        <%= button_to "+" + post.rating.to_s, rate_post_path(:id=> post.id, :rate=> 1), class: 'btn btn-success rate-btn', method: :post, remote: true %>
-                    <% end %>
-                    <% if current_user && current_user.facebook_user.present? %>
-                        <div class="fb-like" data-href="http://poligon-kamil-sluszniak.c9users.io:8080/posts/<%= post.id %>" data-width="50" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true">
-                        </div>
-                    <% end %>
-                </div>
+                <% if current_user %>
+                    <%= button_to "+" + post.rating.to_s, rate_post_path(:id=> post.id, :rate=> 1), class: 'btn btn-success rate-btn', method: :post, remote: true %>
+                <% end %>
+                <% if current_user && current_user.facebook_user.present? %>
+                    <div class="fb-like" data-href="http://poligon-kamil-sluszniak.c9users.io:8080/posts/<%= post.id %>" data-width="50" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true">
+                    </div>
+                <% end %>
             </div>
             <% if current_user && current_user.facebook_user.present? %>
                 <div class="row">
