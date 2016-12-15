@@ -30,8 +30,6 @@ class SessionsController < ApplicationController
         @pw = SecureRandom.urlsafe_base64
         @new_user = User.new(name: @fb_user.name, email: @fb_user.email, password: @pw, password_confirmation: @pw, activated: true, activated_at: Time.zone.now)
         @new_user.facebook_user = @fb_user
-        #@new_user.avatar = User.koala_fetch_fb_profile_image(@fb_user.oauth_token)
-        
         if @new_user.avatar
           @new_user.save!
         else
