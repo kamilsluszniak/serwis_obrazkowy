@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
   def destroy
     if current_user.admin?
       
-      #render :template => 'your_file_here'
+
       respond_to do |format|
         format.js
         
@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
   def edit
     if current_user.admin?
       @content = @comment.content
-      #render :template => 'your_file_here'
+
       respond_to do |format|
         format.js
       end

@@ -16,6 +16,8 @@ gem "figaro"
 gem 'responders'
 gem 'rails-i18n', '~> 5.0.0'
 gem 'youtube_it', '~> 2.1.1'
+gem 'omniauth-facebook', '~> 3.0.0'
+gem "koala",  '~> 2.4.0'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.0'

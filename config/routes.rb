@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('/')
+  get 'signout', to: 'sessions#destroy', as: 'signout'
+  
   get 'password_resets/new'
 
   get 'password_resets/edit'
@@ -8,7 +12,7 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :comments,          only: [:create, :destroy, :edit, :update]
-
+  resources :sessions, only: [:create, :destroy]
 
   get 'sessions/new'
 

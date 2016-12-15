@@ -1,0 +1,9 @@
+$("#show-comments-btn<%= post.id %>").click(function () {
+    var button = $(this).closest(".content").find(".fb-comments");
+    if (button.css('display') == 'none'){
+        button.show();
+    }
+    else {
+        button.hide();
+    };
+});

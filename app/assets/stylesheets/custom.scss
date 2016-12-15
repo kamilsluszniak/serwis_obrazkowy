@@ -25,6 +25,7 @@ body {
 .margin-15px-fixed{
   margin-left: 0px;
   margin-right: 0px;
+  margin-bottom: 100px;
 }
 
 section {
@@ -99,6 +100,12 @@ p {
     }
 }
 
+.nav{
+  li{
+    display: inline-block;
+  }
+}
+
 
 
 /* footer */
@@ -156,14 +163,6 @@ aside {
   }
 }
 
-.gravatar {
-  float: left;
-  margin-right: 10px;
-}
-
-.gravatar_edit {
-  margin-top: 15px;
-}
 
 /* forms */
 
@@ -218,6 +217,9 @@ input {
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
   }
+  .avatar{
+    width: 50px;
+  }
 }
 
 /*posts*/
@@ -263,14 +265,15 @@ input {
   border-color: LightGrey;
   position:  relative;
   display: block;
-  
+  padding-bottom: 20px;
   
   .content{
     padding-left: 7px;
+    padding-right: 7px;
     display:  block;
     margin-left: auto;
     margin-right: auto;
-    width: 610px;
+
     
     .post_image{
       width: 100%;
@@ -279,8 +282,20 @@ input {
       margin-left: auto;
       margin-right: auto;
       margin-bottom: 10px;
+      img{
+        width: 100%;
+      }
     }
+    .video {
+      iframe{
+      position: absolute;
+      top:0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      }
     
+    }
     .span-rating{
       
       border: 1px solid grey;
@@ -300,7 +315,7 @@ input {
   list-style: none;
   margin: 0;
   li {
-    overflow: auto;
+    overflow: hidden;
     padding: 10px 0;
     border-bottom: 1px solid $gray-lighter;
   }
@@ -312,4 +327,37 @@ input {
   display: inline-block;
   }
   
+}
+
+.fb-comments{
+  margin-left: auto;
+  margin-right: auto;
+  margin-left: 10%;
+ 
+}
+
+.comments-button-toggle{
+  margin-left: 10%;
+  display: inline-block;
+  cursor:pointer;
+  color: blue;
+  text-decoration:none;
+  &:hover {
+    text-decoration:underline;
+  }
+  &:active {
+    color: pink;
+  }
+}
+.fb-login{
+  width: 100%;
+  margin-top: 10px;
+}
+
+.rate-btn{
+  margin-top: 10px;
+}
+.fb-like{
+  display: inline-block;
+  margin-top: 10px;
 }

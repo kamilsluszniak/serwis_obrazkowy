@@ -11,9 +11,10 @@
     
   </head>
   <body>
+    <%= render 'layouts/fbsdk' %>
     <%= render 'layouts/header' %>
     <div id="modal-window" class="modal"></div>
-    <div class="container">
+    <div class="container col-md-12">
       <% flash.each do |message_type, message| %>
               <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
       <% end %>

@@ -11,3 +11,15 @@ $(document).ready(function(){
         }
     });
 });
+
+
+$(document).ready(function() {
+    $(document).find("#show-comments-btn").each(function() {
+        $(this).click(function () {
+            $(this).css('background', 'yellow');
+            $(this).closest(".content").find(".fb-comments").show();
+            console.log($(this).attr("id"));
+        });
+        console.log("dupa");
+    });
+});

@@ -5,20 +5,16 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    
+    
     if params[:random]
       @posts =  Post.order('random()').page(params[:page]).per_page(10)
+      get_yt_array_for @posts
     else
       @posts = Post.paginate(page: params[:page], :per_page => 10).order('created_at DESC')
-      @yt = @posts.where("yt_uid is NOT NULL and yt_uid != ''")
-      @ar = Array.new
-      
-      @yt.collect do |yt|
-        @ar << yt.id
-        @ar << yt.yt_uid
-      end
-      
+      get_yt_array_for @posts
     end
-    
+  
     #= Post.paginate(page: params[:page], :per_page => 10, :order => 'RANDOM()')
   end
 
@@ -59,10 +55,10 @@ class PostsController < ApplicationController
         redirect_to root_url
       end
     elsif (@post.attachment.present? && @post.video_link.present?)
-      flash[:danger] = "Nie można jednocześnie dodać obrazka i filmu"
+      flash.now[:danger] = "Nie można jednocześnie dodać obrazka i filmu"
       render 'new'
-    elsif !(@post.attachment.present? && @post.video_link.present?)
-      flash[:danger] = "Musisz dodać obrazek lub film"
+    elsif !(@post.attachment.present? || @post.video_link.present?)
+      flash.now[:danger] = "Musisz dodać obrazek lub film"
       render 'new'
     end
     
@@ -73,12 +69,10 @@ class PostsController < ApplicationController
     @post = Post.find(@id)
     if params[:rate] && current_user
       @current_user_id = current_user.id
-      
       if !(@post.users_voted.include? "i#{@current_user_id}")
         @post.users_voted += "i#{current_user.id.to_s}"
         @post.rating += 1
         @post.save
-
       else
         @message = "Można głosować tylko raz na każdy post!"
         respond_to do |format|
@@ -127,5 +121,12 @@ class PostsController < ApplicationController
       params.require(:post).permit(:title, :content, :user_id, :attachment, :random, :rate, :id, :video_link)
     end
     
-    
+    def get_yt_array_for(posts)
+      @yt = posts.where("yt_uid is NOT NULL and yt_uid != ''")
+      @ar = Array.new
+      @yt.collect do |yt|
+        @ar << yt.id
+        @ar << yt.yt_uid
+      end
+    end
 end

@@ -1,15 +1,18 @@
-<% provide(:title, 'Posty') %>
+<% provide(:title, 'Strona główna') %>
 
 
 
 <ul class="posts">
   <%= render @posts %>
+  <%= will_paginate @posts %>
 </ul>
 
-<%= will_paginate @posts %>
+
 
 <script type="text/javascript">
     <%= render 'show_js.html.erb' %>
 </script>
+
+
 
 <%= debug(params) if Rails.env.development? %>
