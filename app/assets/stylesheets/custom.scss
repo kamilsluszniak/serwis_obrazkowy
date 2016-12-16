@@ -293,18 +293,16 @@ input {
       left: 0;
       width: 100%;
       height: 100%;
-      }
-    
+     }
     }
-    .span-rating{
-      
-      border: 1px solid grey;
-      display: inline-block;
-      color: black;
-      background-color: LightGrey;
-      padding: 12px;
-      
-      
+    .post-options{
+      overflow: hidden;
+      white-space: nowrap;
+      display: block;
+      .edit-delete-nav{
+        float: left;
+        margin: 0 !important;
+      }
     }
   }
 }
@@ -313,11 +311,9 @@ input {
 /*posts index*/
 .posts {
   list-style: none;
-  margin: 0;
   li {
     overflow: hidden;
     padding: 10px 0;
-    border-bottom: 1px solid $gray-lighter;
   }
 }
 

@@ -7,7 +7,12 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   #process :add_text
   process resize_to_limit: [600, 1600]
-  process :quality => 15
+  
+  if Rails.env.production?
+    process :quality => 80
+  else
+    process :quality => 15
+  end
  
   # Choose what kind of storage to use for this uploader:
   if Rails.env.production?
