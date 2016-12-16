@@ -81,7 +81,7 @@ class PostsController < ApplicationController
         return
       end
     end
-    render js: "$('.span-rating').html('Głosy: #{@post.rating} ')"
+    render js: "$('.rating').html('Głosy: #{@post.rating} ')"
   end
 
   # PATCH/PUT /posts/1
