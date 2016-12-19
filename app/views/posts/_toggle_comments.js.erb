@@ -1,9 +1,14 @@
 $("#show-comments-btn<%= post.id %>").click(function () {
-    var button = $(this).closest(".content").find(".fb-comments");
-    if (button.css('display') == 'none'){
-        button.show();
+    var comments = $(this).closest(".content").find(".fb-comments");
+    var attr = comments.attr('fb-xfbml-state');
+    
+    if (comments.css('display') == 'none'){
+        if (typeof attr !== typeof undefined && attr !== false){
+            FB.XFBML.parse(comments);
+        }
+        comments.show();
     }
     else {
-        button.hide();
+        comments.hide();
     };
 });
