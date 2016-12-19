@@ -1,6 +1,7 @@
 $("#show-comments-btn<%= post.id %>").click(function () {
     var comments = $(this).closest(".content").find(".fb-comments");
     var attr = comments.attr('fb-xfbml-state');
+    console.log(var attr);
     
     if (comments.css('display') == 'none'){
         if (typeof attr !== typeof undefined && attr !== false){
