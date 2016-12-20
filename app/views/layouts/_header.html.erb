@@ -4,7 +4,7 @@
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Losowe", root_path(:random => 1) %></li>
-        <li><%= link_to "Nowy Post", new_post_path %></li>
+        <li><%= link_to "Dodaj", new_post_path %></li>
         
         <% if logged_in? %>
           <li><%= link_to "Użytkownicy", users_path %></li>

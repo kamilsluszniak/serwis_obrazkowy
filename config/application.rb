@@ -7,7 +7,6 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 I18n.default_locale = :pl
 
-
 module SampleApp
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

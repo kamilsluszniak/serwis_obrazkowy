@@ -1,12 +1,8 @@
 $("#show-comments-btn<%= post.id %>").click(function () {
-    var comments = $(this).closest(".content").find(".fb-comments");
-    var attr = comments.attr('fb-xfbml-state');
-    console.log(attr);
-    
+
+    var comments = $(this).closest(".content").find(".fb-comments-container");
     if (comments.css('display') == 'none'){
-        if (typeof attr !== typeof undefined && attr !== false){
-            FB.XFBML.parse(comments);
-        }
+
         comments.show();
     }
     else {
