@@ -8,11 +8,7 @@
     }
     
     if(document.getElementById('iframe_api') === null){
-        var tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        tag.id = "iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        
     }
     else
         runPlayers();
@@ -22,6 +18,7 @@
     function runPlayers(){
         var i = 1;
         for(var i = 0; i < playerJSArray.length; i = i+2) {
+            
             player = new YT.Player('player'+playerJSArray[i], {
             width: '100%',
             videoId: playerJSArray[i+1],
