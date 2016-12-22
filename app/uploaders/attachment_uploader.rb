@@ -1,11 +1,11 @@
 # encoding: utf-8
 
 class AttachmentUploader < CarrierWave::Uploader::Base
-
+  include ActionView::Helpers::TextHelper
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
-  #process :add_text
+  process :add_text
   process resize_to_limit: [600, 1600]
   
   if Rails.env.production?
@@ -43,14 +43,23 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   # end
   
   def add_text
+    @text = model.image_text
+    @text = word_wrap(@text, line_width: 40)
+    
+    
     manipulate! do |image|
       image.combine_options do |c|
-        c.gravity 'South'
-        c.pointsize '58'
-        c.draw "text 0,0 'test'"
-        c.fill 'white'
-        c.stroke 'black'
-        c.strokewidth '3'
+        if model.text_bool
+          
+          c.gravity 'South'
+          c.append
+          c.pointsize '58'
+          c.annotate '+0+0', "#{@text}"
+          c.fill 'white'
+          c.stroke 'black'
+          c.strokewidth '3'
+        end
+        
       end
       image
     end    

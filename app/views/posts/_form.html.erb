@@ -11,6 +11,15 @@
   <%= f.label :attachment, 'Obrazek:' %>
   <%= f.file_field :attachment %>
   
+  <div class="checkbox-container">
+    Tekst na obrazku&#63<%= f.check_box :text_bool, class: 'text-checkbox' %>
+    <div id="image-text-field" style="display:none;">
+      <%= f.label :image_text, 'Tekst na obrazek:' %>
+      <%= f.text_field :image_text %>
+    </div>
+  </div>
+  <br>
+  
   <%= f.label :video_link, 'Link do filmu:' %>
   <%= f.text_field :video_link %>
 

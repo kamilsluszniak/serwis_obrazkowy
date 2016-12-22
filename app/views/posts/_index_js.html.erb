@@ -3,16 +3,22 @@
     var player;
     var playerJSArray = <%=raw @ar%>;
     
-    function onYouTubeIframeAPIReady() {
-        runPlayers();
-    }
     
+$(document).on('turbolinks:load', function() {    
     if(document.getElementById('iframe_api') === null){
-        
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        runPlayers();
     }
     else
         runPlayers();
+});
 
+    function onYouTubeIframeAPIReady() {
+        runPlayers();
+    }
     
     
     function runPlayers(){

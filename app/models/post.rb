@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
     YT_LINK_FORMAT = /\A(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=)?([\w-]{11})/
+    attr_accessor :text_bool, :image_text
     
     before_create -> do
         if video_link

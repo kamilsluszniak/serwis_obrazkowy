@@ -11,8 +11,9 @@
 #            return false
         
 
-        
-        
+$(document).on "turbolinks:load", ->
+    $(".text-checkbox").click ->
+        $('#image-text-field').show()
     
 
 

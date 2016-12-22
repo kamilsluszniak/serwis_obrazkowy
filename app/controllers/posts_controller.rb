@@ -9,13 +9,10 @@ class PostsController < ApplicationController
     
     if params[:random]
       @posts =  Post.order('random()').page(params[:page]).per_page(10)
-      get_yt_array_for @posts
     else
       @posts = Post.paginate(page: params[:page], :per_page => 10).order('created_at DESC')
-      get_yt_array_for @posts
     end
-  
-    #= Post.paginate(page: params[:page], :per_page => 10, :order => 'RANDOM()')
+    
   end
 
   # GET /posts/1
@@ -46,6 +43,7 @@ class PostsController < ApplicationController
     @current_user = current_user
     @post = Post.new(post_params)
     @post.user_id = @current_user.id
+    
     if (@post.attachment.present? ^ @post.video_link.present?)
       if (@post.user_id == @current_user.id) && @post.save 
         flash[:success] = "Post dodany. Możesz go edytować przed upływem 5 minut "
@@ -81,7 +79,7 @@ class PostsController < ApplicationController
         return
       end
     end
-    render js: "$('.rating').html('Głosy: #{@post.rating} ')"
+    render js: "$('.rating#{@post.id}').val('+#{@post.rating} ')"
   end
 
   # PATCH/PUT /posts/1
@@ -118,15 +116,7 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content, :user_id, :attachment, :random, :rate, :id, :video_link)
+      params.require(:post).permit(:title, :content, :user_id, :random, :rate, :id, :video_link, :text_bool, :image_text, :attachment)
     end
     
-    def get_yt_array_for(posts)
-      @yt = posts.where("yt_uid is NOT NULL and yt_uid != ''")
-      @ar = Array.new
-      @yt.collect do |yt|
-        @ar << yt.id
-        @ar << yt.yt_uid
-      end
-    end
 end

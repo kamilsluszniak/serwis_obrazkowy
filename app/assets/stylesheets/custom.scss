@@ -353,9 +353,20 @@ input {
 
 .rate-btn{
   margin-top: 10px;
-  width: 159px;
+  width: 100%;
 }
 .fb-like{
   display: inline-block;
   margin-top: 10px;
+}
+
+.checkbox-container{
+  display: block!important;
+  
+  .text-checkbox{
+    width: 15px;
+  }
+  #image-text-field{
+    
+  }
 }

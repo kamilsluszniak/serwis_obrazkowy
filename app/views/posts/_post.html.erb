@@ -13,9 +13,9 @@
                     <%= (link_to image_tag(post.attachment_url), post, :class => "post_image") %>
                 <% elsif post.video_link.present? %>
                     <div class="embed-responsive embed-responsive-16by9">
-                        <div class="embed-responsive-item" id="player<%=post.id%>">
+                        <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/<%= post.yt_uid %>?rel=0&hd=1" frameborder="0" allowfullscreen>
                             
-                        </div>
+                        </iframe>
                     </div>
                 <% end %>
                 <% if current_user %>
@@ -28,7 +28,7 @@
                         </ul>
                         <% end %>  
                         <div class="rating btn-group pull-right">
-                            <%= button_to "+" + post.rating.to_s, rate_post_path(:id=> post.id, :rate=> 1), class: 'btn btn-success rate-btn', method: :post, remote: true %>
+                            <%= button_to "+" + post.rating.to_s, rate_post_path(:id=> post.id, :rate=> 1), class: "btn btn-success rate-btn rating#{post.id}", method: :post, remote: true %>
                             <% if current_user.facebook_user.present? %>
                                 <div class="fb-like" data-href="http://poligon-kamil-sluszniak.c9users.io:8080/posts/<%= post.id %>" data-width="50" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true">
                                 </div>
