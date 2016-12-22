@@ -13,7 +13,7 @@
                     <%= (link_to image_tag(post.attachment_url), post, :class => "post_image") %>
                 <% elsif post.video_link.present? %>
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/<%= post.yt_uid %>?rel=0&hd=1" frameborder="0" allowfullscreen>
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<%= post.yt_uid %>?rel=0&hd=1" frameborder="0" allowfullscreen>
                             
                         </iframe>
                     </div>
@@ -30,7 +30,7 @@
                         <div class="rating btn-group pull-right">
                             <%= button_to "+" + post.rating.to_s, rate_post_path(:id=> post.id, :rate=> 1), class: "btn btn-success rate-btn rating#{post.id}", method: :post, remote: true %>
                             <% if current_user.facebook_user.present? %>
-                                <div class="fb-like" data-href="http://poligon-kamil-sluszniak.c9users.io:8080/posts/<%= post.id %>" data-width="50" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true">
+                                <div class="fb-like" data-href="https://mysterious-peak-74664.herokuapp.com/posts/<%= post.id %>" data-width="50" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true">
                                 </div>
                             <% end %>
                         </div>
