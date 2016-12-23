@@ -5,13 +5,15 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
-  process :add_text
+  
   process resize_to_limit: [600, 1600]
+  
+  process :add_text
   
   if Rails.env.production?
     process :quality => 80
   else
-    process :quality => 15
+    process :quality => 80
   end
  
   # Choose what kind of storage to use for this uploader:
@@ -43,25 +45,26 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   # end
   
   def add_text
-    @text = model.image_text
-    @text = word_wrap(@text, line_width: 40)
-    
-    
-    manipulate! do |image|
-      image.combine_options do |c|
-        if model.text_bool
-          
+    if model.text_bool
+      @text = model.image_text
+      @text = word_wrap(@text, line_width: 40)
+      if file
+        @width, @height = ::MiniMagick::Image.open(file.file)[:dimensions]
+      end
+      @size = 36 * @width / 600 
+      @size = @size.round
+      manipulate! do |image|
+        image.combine_options do |c|
           c.gravity 'South'
-          c.append
-          c.pointsize '58'
+          c.pointsize "#{@size}"
           c.annotate '+0+0', "#{@text}"
           c.fill 'white'
           c.stroke 'black'
-          c.strokewidth '3'
+          c.strokewidth '1'
+          c.append
         end
-        
-      end
       image
+      end
     end    
   end
 
@@ -82,4 +85,6 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+
+      
 end
