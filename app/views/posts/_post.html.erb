@@ -19,6 +19,12 @@
                     </div>
                 <% end %>
                 <% if current_user %>
+                    <%= link_to "Komentarze-Custom", post , class: "comments-button" %>
+
+                    <span id="show-comments-btn<%= post.id %>" class="comments-button-toggle">Komentarze-Facebook</span>
+
+                    
+                    
                     <div class="post-options block pull-right">
                         <% if ((post.user == current_user) && (post.created_at > 5.minutes.ago)) || current_user.admin? %>
                         <ul class="nav navbar-nav edit-delete-nav pull-left">
@@ -26,7 +32,7 @@
                             <li><%= link_to "Usuń", post, method: :delete,
                                 data: { confirm: "Na pewno usunąć ten post?" } %></li>
                         </ul>
-                        <% end %>  
+                        <% end %>
                         <div class="rating btn-group pull-right">
                             <%= button_to "+" + post.rating.to_s, rate_post_path(:id=> post.id, :rate=> 1), class: "btn btn-success rate-btn rating#{post.id}", method: :post, remote: true %>
                             <% if current_user.facebook_user.present? %>
@@ -35,21 +41,21 @@
                             <% end %>
                         </div>
                     </div>
+                    
+                       
+                    
                     <% if current_user.facebook_user.present? %>
-                        <div class="row">
-                            <div class="comments-button-toggle">
-                                <span id="show-comments-btn<%= post.id %>">Komentarze</span>
-                            </div>
-                        </div>
+                        
                         <div class="row">
                             <div class="fb-comments-container" id="post<%= post.id %>comments" style="display:none;">
                                 <div class="fb-comments" data-href="http://poligon-kamil-sluszniak.c9users.io:8080/posts/<%= post.id %>" data-width="100%" data-numposts="8">
                                 </div>
-                                <script type="text/javascript">
-                                    <%= render "toggle_comments.js.erb", post: post %>
-                                </script>
+                                
                             </div>
                         </div>
+                        <script type="text/javascript">
+                            <%= render "toggle_comments.js.erb", post: post %>
+                        </script>
                     <% end %>
                     <div style="clear: both"></div>
                 <% end %>

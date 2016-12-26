@@ -1,5 +1,5 @@
 $('.comments').hide();
 $('.comments').html('<%= raw escape_javascript(render(:partial => 'comments/comment', :collection => @comments )) %>')
-$('.pagination').html('<%= will_paginate @comments%>')
+$('.pagination').html('<%= js_will_paginate @comments, :params => {:id => @post.id, :controller => 'posts', :action => 'show'} %>')
 $('#comment-field').val('');
 $('.comments').fadeIn(400);

@@ -16,10 +16,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-5 col-md-offset-3">
+    <div class="col-md-6 col-md-offset-3">
       <span class="timestamp">
             Dodany <%= time_ago_in_words(comment.created_at) %> temu.
-            <% if (current_user && current_user.admin?) %>
+            <% if (current_user && (current_user.id == comment.user_id)) %>
               <ul class="nav navbar-nav navbar-right">
                 <li><%= link_to "Edytuj", edit_comment_path(comment.id), remote: true %></li>
                 <li><%= link_to "Usuń", comment, method: :delete,

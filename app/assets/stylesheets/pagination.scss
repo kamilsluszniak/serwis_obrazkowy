@@ -1,0 +1,13 @@
+.pagination{
+    a{
+      padding: 5px;
+      border: 1px solid black;
+      &:hover{
+          background-color: lightblue;
+      }
+    }
+    span em{
+        padding: 5px;
+        border: 1px solid black;
+    }
+}

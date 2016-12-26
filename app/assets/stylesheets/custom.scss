@@ -299,9 +299,12 @@ input {
       overflow: hidden;
       white-space: nowrap;
       display: block;
+      
       .edit-delete-nav{
         float: left;
         margin: 0 !important;
+        padding-top: 6px !important;;
+        padding-bottom: 6px !important;;
       }
     }
   }
@@ -311,7 +314,7 @@ input {
 /*posts index*/
 .posts {
   list-style: none;
-  li {
+  > li {
     overflow: hidden;
     padding: 10px 0;
   }
@@ -333,27 +336,14 @@ input {
 
 
 
-.comments-button-toggle{
-  margin-left: 10%;
-  display: inline-block;
-  cursor:pointer;
-  color: blue;
-  text-decoration:none;
-  &:hover {
-    text-decoration:underline;
-  }
-  &:active {
-    color: pink;
-  }
-}
+
 .fb-login{
   width: 100%;
   margin-top: 10px;
 }
 
 .rate-btn{
-  margin-top: 10px;
-  width: 100%;
+  width: 158px;
 }
 .fb-like{
   display: inline-block;
@@ -368,5 +358,47 @@ input {
   }
   #image-text-field{
     
+  }
+}
+.comment-buttons-list{
+  list-style: none;
+  display: inline-block;
+}
+
+.comments-button{
+  padding: 6px;
+  margin-top: 15px;
+  background-color: #696969;
+  border-radius: 3px;
+  color: white;
+  font: 13.3333px Arial;
+  line-height: 26px;
+  font-weight: bold;
+
+
+  &:hover{
+    background-color: #303030;
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.comments-button-toggle{
+  margin-left: 10px;
+
+  cursor: pointer;
+  padding: 6px;
+  margin-top: 15px;
+  background-color: #4267b2;
+  border-radius: 3px;
+  color: white;
+  border-color: #4267b2;
+  font-weight: bold;
+  white-space: nowrap;
+  font: 13.3333px Arial;
+  line-height: 26px;
+
+  &:hover {
+    background-color: #365899;
   }
 }

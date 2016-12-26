@@ -1,0 +1,5 @@
+$('.comments').html('<%= raw escape_javascript(render(:partial => 'comments/comment', :collection => @comments )) %>')
+$('.pagination').html('<%= js_will_paginate @comments %>')
+$('html, body').animate({
+        scrollTop: $('.comments').offset().top - $('header').outerHeight()
+    }, 400);

@@ -19,8 +19,12 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @comment = Comment.new
-    @comments = Comment.where("post_id = ?", params[:id]).paginate(page: params[:page], :per_page => 5)
+    @comments = Comment.where("post_id = ?", params[:id]).paginate(page: params[:page], :per_page => 10)
     
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # GET /posts/new

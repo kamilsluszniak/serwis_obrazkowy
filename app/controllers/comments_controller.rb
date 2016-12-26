@@ -6,12 +6,17 @@ class CommentsController < ApplicationController
   def new
     @comment = Comment.new
   end
+  
+  #def index
+  #  @comments = Comment.paginate(page: params[:page], :per_page => 5).order('created_at DESC')
+    
+  #end
 
   def create
     @comment = current_user.comments.build(content: params[:comment][:content], user_id: params[:user_id], post_id: params[:post_id])
     @post = Post.find(params[:post_id])
     if @comment.save
-      @comments = Comment.where("post_id = ?", params[:post_id]).paginate(page: params[:page], :per_page => 5)
+      @comments = @post.comments.paginate(page: params[:page], :per_page => 10)
       respond_to do |format|
         format.js
       end
