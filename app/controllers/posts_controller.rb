@@ -89,7 +89,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    if (@post.user == current_user) && ((@post.created_at > 5.minutes.ago) || current_user.admin?)
+    if ((@post.user == current_user && @post.created_at > 5.minutes.ago) || current_user.admin?)
       @post.update_attributes(post_params)
       flash[:success] = "Post edytowany pomyślnie"
       redirect_to @post
