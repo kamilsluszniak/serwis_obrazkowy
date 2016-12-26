@@ -102,7 +102,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    if (@post.user == current_user) && ((@post.created_at > 5.minutes.ago) || current_user.admin?)
+    if ((@post.user == current_user && @post.created_at > 5.minutes.ago) || current_user.admin?)
       @post.destroy
       flash[:success] = "Post usunięty pomyślnie"
       redirect_to root_url
