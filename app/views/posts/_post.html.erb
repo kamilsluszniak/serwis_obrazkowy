@@ -1,10 +1,10 @@
 <li>
 <div class="row margin-15px-fixed">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
         <div class="post-container">
             <div class="post_info">
                 <h1 class="text-left"><%= post.title %></h1>
-                <img class="user_avatar"><%= avatar_for post.user %></img>
+                <%= avatar_for post.user %>
                 <p><%= post.user.name %>, dodany <%= time_ago_in_words(post.created_at) %> temu.</p>
             </div>
             <div class="content" id="post<%= post.id %>">
@@ -18,47 +18,37 @@
                         </iframe>
                     </div>
                 <% end %>
-                <% if current_user %>
+                
+                <div class="comment-buttons-container">
                     <%= link_to "Komentarze-Custom", post , class: "comments-button" %>
-
                     <span id="show-comments-btn<%= post.id %>" class="comments-button-toggle">Komentarze-Facebook</span>
-
-                    
-                    
-                    <div class="post-options block pull-right">
-                        <% if ((post.user == current_user) && (post.created_at > 5.minutes.ago)) || current_user.admin? %>
-                        <ul class="nav navbar-nav edit-delete-nav pull-left">
+                </div>
+                <div class="post-options pull-right">
+                        
+                    <div class="fb-like" data-href="https://mysterious-peak-74664.herokuapp.com/posts/<%= post.id %>" data-width="50" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true">
+                    </div>
+                    <div class="rating btn-group">
+                        <%= button_to "+" + post.rating.to_s, rate_post_path(:id=> post.id, :rate=> 1), class: "btn btn-success rate-btn rating#{post.id}", method: :post, remote: true %>
+                    </div>
+                    <% if current_user && (((post.user == current_user) && (post.created_at > 5.minutes.ago)) || current_user.admin?) %>
+                        <ul class="nav edit-delete-nav">
                             <li><%= link_to "Edytuj", edit_post_path(post.id) %></li>
                             <li><%= link_to "Usuń", post, method: :delete,
                                 data: { confirm: "Na pewno usunąć ten post?" } %></li>
                         </ul>
-                        <% end %>
-                        <div class="rating btn-group pull-right">
-                            <%= button_to "+" + post.rating.to_s, rate_post_path(:id=> post.id, :rate=> 1), class: "btn btn-success rate-btn rating#{post.id}", method: :post, remote: true %>
-                            <% if current_user.facebook_user.present? %>
-                                <div class="fb-like" data-href="https://mysterious-peak-74664.herokuapp.com/posts/<%= post.id %>" data-width="50" data-layout="button_count" data-action="like" data-size="small" data-show-faces="true" data-share="true">
-                                </div>
-                            <% end %>
-                        </div>
-                    </div>
-                    
-                       
-                    
-                    <% if current_user.facebook_user.present? %>
-                        
-                        <div class="row">
-                            <div class="fb-comments-container" id="post<%= post.id %>comments" style="display:none;">
-                                <div class="fb-comments" data-href="http://poligon-kamil-sluszniak.c9users.io:8080/posts/<%= post.id %>" data-width="100%" data-numposts="8">
-                                </div>
-                                
+                    <% end %>
+                </div>
+                   
+                    <div class="row">
+                        <div class="fb-comments-container" id="post<%= post.id %>comments" style="display:none;">
+                            <div class="fb-comments" data-href="http://poligon-kamil-sluszniak.c9users.io:8080/posts/<%= post.id %>" data-width="100%" data-numposts="8">
                             </div>
                         </div>
-                        <script type="text/javascript">
-                            <%= render "toggle_comments.js.erb", post: post %>
-                        </script>
-                    <% end %>
-                    <div style="clear: both"></div>
-                <% end %>
+                    </div>
+                    <script type="text/javascript">
+                        <%= render "toggle_comments.js.erb", post: post %>
+                    </script>
+                <div style="clear: both"></div>
             </div>   
         </div>
     </div>

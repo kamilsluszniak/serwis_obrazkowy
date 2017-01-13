@@ -18,7 +18,7 @@ CarrierWave.configure do |config|
     :aws_access_key_id     => ENV['AWS_ACCESS_KEY'],
     :aws_secret_access_key => ENV['AWS_SECRET_KEY'],
     :region                => 'eu-central-1'
-  }
+  } if Rails.env.production?
 
   # For testing, upload files to local `tmp` folder.
   if Rails.env.test? || Rails.env.cucumber?

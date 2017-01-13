@@ -13,13 +13,14 @@ $dark-grey: #222222;
 
 /* universal */
 html,body {
-  background-color:#FFFFFF;
+  background-color: #3333;
   width:100%;
   height:100%;
 }
 body {
   padding-top: 60px;
-  
+  font: 14px 'Open Sans',sans-serif;
+  background-color: black;
 }
 
 .margin-15px-fixed{
@@ -84,7 +85,9 @@ p {
 }
 
 /* header */
-
+.inline-block{
+  display: inline-block;
+}
 #logo {
   float: left;
   margin-right: 10px;
@@ -103,8 +106,99 @@ p {
 .nav{
   li{
     display: inline-block;
+    a{
+      display: inline-block;
+    }
   }
 }
+.main-navbar-header{
+  width: 100%;
+  .container{
+    width: 100%;
+  }
+}
+
+.main-navbar{
+  display: inline-block;
+  li{
+    display: inline-block;
+    a{
+      display: inline-block;
+      margin-left: 5px;
+    }
+  }
+  @media all and (max-width: 590px){
+    display: none !important;
+  }
+}
+.profile-button{
+  background: url("profile.png");
+  border: 0 !important;
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+.profile-dropdown{
+  background-color: $dark-grey;
+  > a{
+    color: #9d9d9d;
+    padding: 10px 15px;
+    display: block;
+    
+    &:hover{
+      text-decoration: none;
+      background-color: indigo;
+      
+    }
+  }
+}
+.hamburger{
+  border: 0;
+  @media all and (min-width: 590px){
+    display: none !important;
+  }
+  .side-menu{
+    list-style: none;
+    float: right;
+    padding: 5px 10px;
+    position: fixed;
+    right: 0px;
+    top: 45px;
+    z-index: 1000;
+    background: #222222;
+    border-left: 1px solid #000;
+    border-bottom: 1px solid #000;
+    
+    
+    @media all and (min-width: 590px){
+      display: none !important;
+    }
+    @media all and (max-width: 590px){
+      width: 30%;
+    }
+    @media all and (min-width: 490px) and (max-width: 590px){
+      width: 40%;
+    }
+    @media all and (max-width: 490px){
+      width: 50%;
+    }
+    > li a{
+      display: block;
+      text-align: right;
+      text-decoration: none;
+      padding: 8px 15px;
+      color: white;
+      &:hover{
+        background-color: indigo;
+      }
+    }
+   
+  }
+  
+}
+
 
 
 
@@ -253,16 +347,22 @@ input {
   }
   
 .container{
-  padding-left: 0px;
-}
+  width: 100%;
   
+}  
+
+.login-container{
+  h1, label, span{
+    color: white;
+  }
+  
+}
 .post-container{
 
   margin: auto auto;
   border: 1px;
   padding: auto;
   border-style: groove;
-  border-color: LightGrey;
   position:  relative;
   display: block;
   padding-bottom: 20px;
@@ -273,7 +373,7 @@ input {
     display:  block;
     margin-left: auto;
     margin-right: auto;
-
+    color: white;
     
     .post_image{
       width: 100%;
@@ -299,12 +399,13 @@ input {
       overflow: hidden;
       white-space: nowrap;
       display: block;
+      float: right;
+      margin-top: -10px;
       
       .edit-delete-nav{
-        float: left;
-        margin: 0 !important;
-        padding-top: 6px !important;;
-        padding-bottom: 6px !important;;
+        display: block;
+        padding-top: 0px;
+        
       }
     }
   }
@@ -314,6 +415,7 @@ input {
 /*posts index*/
 .posts {
   list-style: none;
+  padding-left: 0;
   > li {
     overflow: hidden;
     padding: 10px 0;
@@ -341,17 +443,21 @@ input {
   width: 100%;
   margin-top: 10px;
 }
-
+.rating{
+  .button_to{
+    margin-top: -5px;
+  }
+}
 .rate-btn{
-  width: 158px;
+  padding: 0px 8px;
 }
 .fb-like{
-  display: inline-block;
+  display: inline-block !important;
   margin-top: 10px;
 }
 
 .checkbox-container{
-  display: block!important;
+  display: block !important;
   
   .text-checkbox{
     width: 15px;
@@ -360,18 +466,24 @@ input {
     
   }
 }
-.comment-buttons-list{
+.comment-buttons-container{
   list-style: none;
   display: inline-block;
+  float: left;
+}
+.comment{
+  margin-top: 20px;
 }
 
 .comments-button{
-  padding: 6px;
-  margin-top: 15px;
+  padding: 0px 6px;
+  display: block; 
+  float: left; 
+  clear: left; 
   background-color: #696969;
   border-radius: 3px;
   color: white;
-  font: 13.3333px Arial;
+  font: 11px Arial;
   line-height: 26px;
   font-weight: bold;
 
@@ -384,21 +496,27 @@ input {
 }
 
 .comments-button-toggle{
-  margin-left: 10px;
-
+  display: inline-block; 
   cursor: pointer;
-  padding: 6px;
-  margin-top: 15px;
+  padding: 0px 6px;
+
+  margin-left: 4px;
   background-color: #4267b2;
   border-radius: 3px;
   color: white;
   border-color: #4267b2;
   font-weight: bold;
   white-space: nowrap;
-  font: 13.3333px Arial;
+  font: 11px Arial;
   line-height: 26px;
 
   &:hover {
     background-color: #365899;
+  }
+  @media all and (max-width: 570px){
+    float: left;
+    clear: left;
+    margin-left: 0px;
+    margin-top: 10px;
   }
 }

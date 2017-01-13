@@ -223,11 +223,15 @@ pl:
           one: "%{model} nie został zachowany z powodu jednego błędu"
           other: "%{model} nie został zachowany z powodu %{count} błędów"
         body: "Błędy dotyczą następujących pól:"
-    activerecord:
-      errors:
-        messages:
-          <<: *errors_messages
-        template:
-          <<: *errors_template
-        full_messages:
-          format: "%{attribute} %{message}"
+  activerecord:
+    errors:
+      messages:
+        <<: *errors_messages
+      template:
+        <<: *errors_template
+      full_messages:
+        format: "%{attribute} %{message}"
+    attributes:
+      user:
+        name: "nazwa"
+        password: "hasło"

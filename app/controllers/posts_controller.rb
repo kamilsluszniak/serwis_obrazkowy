@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:destroy, :edit, :update, :rate]
   respond_to :html, :js
 
   # GET /posts
@@ -69,7 +70,7 @@ class PostsController < ApplicationController
   def rate
     @id = params[:id]
     @post = Post.find(@id)
-    if params[:rate] && current_user
+    if params[:rate]
       @current_user_id = current_user.id
       if !(@post.users_voted.include? "i#{@current_user_id}")
         @post.users_voted += "i#{current_user.id.to_s}"

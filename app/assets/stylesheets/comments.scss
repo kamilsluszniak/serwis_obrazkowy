@@ -8,7 +8,7 @@
 }
 .comments-list-container{
     display: block;
-    margin-top: 10px;
+    margin-top: 5px;
     .comment-container{
         float: left;
         .user_avatar-comment{
@@ -28,6 +28,11 @@
     .comments{
         display: block;
         list-style: none;
+        color: white;
+        li{
+            border: 1px solid #333333;
+            padding: 5px;
+        }
     }
     
     
