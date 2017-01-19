@@ -13,7 +13,7 @@ class Post < ApplicationRecord
         end
     end
     
-    validates :content, length: { maximum: 140 }, presence: true
+    validates :content, length: { maximum: 140 }, allow_blank: true
     validates :title, length: {maximum: 80}, presence: true
     validates :video_link, format: YT_LINK_FORMAT, allow_blank: true
     mount_uploader :attachment, AttachmentUploader # Tells rails to use this uploader for this model.

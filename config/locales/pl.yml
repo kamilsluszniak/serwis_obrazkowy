@@ -235,3 +235,7 @@ pl:
       user:
         name: "nazwa"
         password: "hasło"
+      post:
+        title: "tytuł"
+        content: "treść"
+        video_link: "link do filmu"

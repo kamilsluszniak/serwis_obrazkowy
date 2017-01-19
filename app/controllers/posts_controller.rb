@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, only: [:destroy, :edit, :update, :rate]
+  before_action :logged_in_user, only: [:create, :destroy, :edit, :update, :rate]
   respond_to :html, :js
 
   # GET /posts
@@ -54,8 +54,7 @@ class PostsController < ApplicationController
         flash[:success] = "Post dodany. Możesz go edytować przed upływem 5 minut "
         redirect_to root_url
       else
-        flash[:danger] = "Musisz najpierw się zalogować."
-        redirect_to root_url
+        render 'new'
       end
     elsif (@post.attachment.present? && @post.video_link.present?)
       flash.now[:danger] = "Nie można jednocześnie dodać obrazka i filmu"
