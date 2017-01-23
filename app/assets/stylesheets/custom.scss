@@ -349,6 +349,13 @@ input {
     .user_avatar{
       float: left;
     }
+    .post_title{
+      color: whitesmoke;
+      
+      &:hover{
+        text-decoration: none;
+      }
+    }
   }
   
 .container{

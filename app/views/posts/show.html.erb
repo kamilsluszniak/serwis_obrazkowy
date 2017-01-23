@@ -9,7 +9,6 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
         <% if logged_in? %>
-        
             <div class="comment-form">
               <%= form_for(@comment, :remote => true, :id => "comment-form") do |f| %>
                   <div class="field">
@@ -19,7 +18,9 @@
                   <%= f.submit "Dodaj komentarz", class: "btn btn-primary", :id => "submit-comment-btn" %>
               <% end %>
             </div>
-        
+            <% unless @comments.any? %>
+                <p style="color:white;">Pod tym postem nie ma jeszcze żadnych komentarzy. 
+            <% end %>
         <% else %>
             <% unless @comments.any? %>
                 <p style="color:white;">Pod tym postem nie ma jeszcze żadnych komentarzy. 
