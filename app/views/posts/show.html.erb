@@ -7,8 +7,9 @@
 
 <div class="grid">
     <div class="row">
+        <div class="col-md-8 col-md-offset-2">
         <% if logged_in? %>
-        <div class="col-md-6 col-md-offset-3">
+        
             <div class="comment-form">
               <%= form_for(@comment, :remote => true, :id => "comment-form") do |f| %>
                   <div class="field">
@@ -18,15 +19,25 @@
                   <%= f.submit "Dodaj komentarz", class: "btn btn-primary", :id => "submit-comment-btn" %>
               <% end %>
             </div>
-        </div>
+        
+        <% else %>
+            <% unless @comments.any? %>
+                <p style="color:white;">Pod tym postem nie ma jeszcze żadnych komentarzy. 
+            <% end %>
+            <span style="color:white; text-align:center;">Aby dodać komentarz musisz się</span>
+                    <%= link_to " zalogować.", sessions_new_path %>
+            </p>
         <% end %>
+        </div>
     </div>
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-md-8 col-md-offset-2">
             <div class="comments-list-container">
                 
                     <ul class="comments">
-                        <%= render @comments %>
+                        <% if @comments.any? %>
+                            <%= render @comments %>
+                        <% end %>
                     </ul>
                     <div class="pagination">
                         <%= js_will_paginate @comments %>

@@ -6,6 +6,7 @@
         <%= avatar_for @user %>
         <%= @user.name %>
       </h1>
+      <%= link_to "Edytuj profil", edit_user_path(current_user.id) %>
     </section>
   </aside>
 </div>

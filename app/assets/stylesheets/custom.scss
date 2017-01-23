@@ -68,6 +68,7 @@ h1 {
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
+  color: whitesmoke;
 }
 
 h2 {
@@ -76,14 +77,17 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $light-grey;
+  color: whitesmoke;
 }
 
 p {
   font-size: 1.1em;
   line-height: 1.7em;
+  color: whitesmoke;
 }
-
+label{
+  color: whitesmoke;
+}
 /* header */
 .inline-block{
   display: inline-block;
@@ -154,6 +158,7 @@ p {
     }
   }
 }
+
 .hamburger{
   border: 0;
   @media all and (min-width: 590px){

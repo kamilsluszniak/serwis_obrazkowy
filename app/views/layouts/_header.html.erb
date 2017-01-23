@@ -1,17 +1,15 @@
 <header class="navbar navbar-fixed-top navbar-inverse main-navbar-header">
   <div class="container">
     <div class="row">
-
-        <%= link_to "filmy i obrazki", root_path, id: "logo" %>
-
-        <div class="hamburger-div">
-          <button type="button" class="navbar-toggle collapsed hamburger" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
+      <%= link_to "filmy i obrazki", root_path, id: "logo" %>
+      <div class="hamburger-div">
+        <button type="button" class="navbar-toggle collapsed hamburger" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
       <div class="main-navbar">
         <ul class="nav navbar-nav inline-block">
           <li><%= link_to "Losowe", root_path(:random => 1) %></li>
@@ -22,7 +20,8 @@
           </button>
           <div class="dropdown-menu profile-dropdown">
             <% if logged_in? %>
-              <%= link_to "Użytkownicy", users_path %>
+              <%= link_to "Profil", current_user%>
+              <%= link_to "Edytuj profil", users_path %>
               <div class="dropdown-divider"></div>
               <%= link_to "Wyloguj się", logout_path, method: "delete" %>
             <% else %>
@@ -39,9 +38,11 @@
           <% if logged_in? %>
             <li><%= link_to "Użytkownicy", users_path %></li>
             <li><%= link_to "Profil", current_user%></li>
+            <li><%= link_to "Edytuj profil", edit_user_path(current_user.id) %></li>
             <li><%= link_to "Wyloguj się", logout_path, method: "delete" %></li>
           <% else %>
             <li><%= link_to "Zaloguj się", login_path %></li>
+            <li><%= link_to "Utwórz konto", signup_path %></li>
           <% end %>
         </ul>
       </div>

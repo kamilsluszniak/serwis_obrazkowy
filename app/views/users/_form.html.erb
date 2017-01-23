@@ -11,9 +11,11 @@
       <%= f.password_field :password, class: 'form-control' %>
 
       <% unless @edit %>
-            <%= f.label :password_confirmation, "Potwierdzenie hasła" %>
-            <%= f.password_field :password_confirmation, class: 'form-control' %>
+            <%= f.label :password_confirmation, "Potwierdzenie hasła", :autocomplete => :off %>
+            <%= f.password_field :password_confirmation, class: 'form-control', :autocomplete => :off %>
       <% end %>
+      
+      <%= link_to "Nie pamiętam hasła", new_password_reset_path %>
       
       <%= f.label :avatar %>
       <%= f.file_field :avatar %>

@@ -10,6 +10,7 @@
         <%= f.label :password, 'Hasło:' %>
         <%= link_to "(nie pamiętam hasła)", new_password_reset_path %>
         <%= f.password_field :password, class: 'form-control' %>
+        <p><%= link_to "Nie pamiętam hasła", new_password_reset_path %></p>
         <%= f.label :remember_me, 'Zapamiętaj mnie:', class: "checkbox inline" do %>
           <%= f.check_box :remember_me %>
           <span>Zapamiętaj mnie na tym komputerze</span>

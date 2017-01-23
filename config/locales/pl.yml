@@ -235,6 +235,7 @@ pl:
       user:
         name: "nazwa"
         password: "hasło"
+        password_confirmation: "potwierdzenie hasła"
       post:
         title: "tytuł"
         content: "treść"
