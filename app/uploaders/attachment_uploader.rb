@@ -11,9 +11,9 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   process :add_text
   
   if Rails.env.production?
-    process :quality => 80
+    process :quality => 90
   else
-    process :quality => 80
+    process :quality => 40
   end
  
   # Choose what kind of storage to use for this uploader:
@@ -47,7 +47,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   def add_text
     if model.text_bool
       @text = model.image_text
-      @text = word_wrap(@text, line_width: 40)
+      @text = word_wrap(@text, line_width: 35)
       if file
         @width, @height = ::MiniMagick::Image.open(file.file)[:dimensions]
       end
