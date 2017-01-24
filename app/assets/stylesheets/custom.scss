@@ -93,6 +93,7 @@ label{
   display: inline-block;
 }
 #logo {
+  margin-left: 25%;
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
@@ -119,6 +120,12 @@ label{
   width: 100%;
   .container{
     width: 100%;
+  }
+}
+.content-container{
+  @media all and (max-width: 446px){
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }
 
@@ -180,9 +187,6 @@ label{
     @media all and (min-width: 590px){
       display: none !important;
     }
-    @media all and (max-width: 590px){
-      width: 30%;
-    }
     @media all and (min-width: 490px) and (max-width: 590px){
       width: 40%;
     }
@@ -212,22 +216,24 @@ label{
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  /*border-top: 1px solid #eaeaea;*/
-  color: $light-grey;
+  color: whitesmoke;
+  nav{
+    margin-left: 15%;
+  }
   a {
-    color: #555;
+    color: whitesmoke;
     &:hover {
-        color: #222;
+        color: indigo;
     }
   }
   small {
     float: left;
   }
   ul {
-      float: right;
+      
       list-style: none;
       li {
-          float: left;
+          display: inline;
           margin-left: 15px;
         }
     }
@@ -442,7 +448,7 @@ input {
 }
 
 .embed-responsive-item{
-  padding-bottom: 5px;
+  padding-bottom: 8px;
 }
 
 .fb-comments-container{

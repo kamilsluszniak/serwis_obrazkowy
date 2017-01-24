@@ -22,6 +22,7 @@
             <% if logged_in? %>
               <%= link_to "Profil", current_user%>
               <%= link_to "Edytuj profil", users_path %>
+              <%= link_to "Użytkownicy", users_path %>
               <div class="dropdown-divider"></div>
               <%= link_to "Wyloguj się", logout_path, method: "delete" %>
             <% else %>

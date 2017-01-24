@@ -19,11 +19,11 @@
               <% end %>
             </div>
             <% unless @comments.any? %>
-                <p style="color:white;">Pod tym postem nie ma jeszcze żadnych komentarzy. 
+                <p id="comment-info">Pod tym postem nie ma jeszcze żadnych komentarzy. 
             <% end %>
         <% else %>
             <% unless @comments.any? %>
-                <p style="color:white;">Pod tym postem nie ma jeszcze żadnych komentarzy. 
+                <p id="comment-info">Pod tym postem nie ma jeszcze żadnych komentarzy. 
             <% end %>
             <span style="color:white; text-align:center;">Aby dodać komentarz musisz się</span>
                     <%= link_to " zalogować.", sessions_new_path %>

@@ -17,11 +17,11 @@
     
     <%= render 'layouts/header' %>
     <div id="modal-window" class="modal"></div>
-    <div class="container content-container">
+    <div class="container ">
       <% flash.each do |message_type, message| %>
               <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
       <% end %>
-      <div class="col-md-12">
+      <div class="col-md-12 content-container">
       <%= yield %>
       </div>
       <%= render 'layouts/footer' %>
